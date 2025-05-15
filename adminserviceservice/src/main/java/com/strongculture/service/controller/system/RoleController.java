@@ -42,7 +42,7 @@ public class RoleController {
         return result;
     }
 
-     @Operation(tags = "修改角色")
+    @Operation(tags = "修改角色")
     @RequestMapping(value = "/role/modify",method = RequestMethod.POST)
     @LoginPassport
     @Transactional

@@ -7,8 +7,8 @@ import java.util.List;
 
 @Data
 public class GrantPermissionReqVo {
-    @Schema(name = "角色id")
+    @Schema(description = "角色id")
     private Long roleId;
-    @Schema(name = "权限id")
+    @Schema(description = "权限id")
     private List<Long> permissionIds;
 }

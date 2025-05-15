@@ -5,13 +5,13 @@ import lombok.Data;
 
 @Data
 public class BaseResponse<T> {
-    @Schema(name = "接口状态码")
+    @Schema(description = "接口状态码")
     private Integer code;
-    @Schema(name = "提示信息")
+    @Schema(description = "提示信息")
     private String message;
-    @Schema(name = "数据")
+    @Schema(description = "数据")
     private T data;
-    @Schema(name = "总计")
+    @Schema(description = "总计")
     private Long total;
 
     public BaseResponse SUCCESS(){

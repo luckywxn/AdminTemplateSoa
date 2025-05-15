@@ -5,10 +5,8 @@ import lombok.Data;
 
 @Data
 public class UserLoginDTO {
-    @Schema(name="登录账户")
+    @Schema(description = "用户名")
     private String username;
-    @Schema(name="登录密码")
+    @Schema(description = "密码")
     private String password;
-    @Schema(name = "验证码" ,required = false)
-    private String validateCode;
 }
