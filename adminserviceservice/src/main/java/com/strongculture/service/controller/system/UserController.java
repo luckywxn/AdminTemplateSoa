@@ -18,8 +18,8 @@ import com.strongculture.service.service.common.IdService;
 import com.strongculture.service.service.common.MessageService;
 import com.strongculture.service.service.common.SessionService;
 import com.strongculture.service.service.system.UserService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-@Api(tags={"管理员服务"})
+@Tag(name="管理员服务")
 @RestController
 @RequestMapping("/system")
 public class UserController {
@@ -48,7 +48,7 @@ public class UserController {
     @Autowired
     private MessageService messageService;
 
-    @ApiOperation(value = "发送图片验证码",notes = "发送图片验证码")
+    @Operation(tags = "发送图片验证码")
     @RequestMapping(value = "/user/login/validateCode",method = RequestMethod.GET)
     public BaseResponse<String> getCodeImage(@RequestParam(value = "userName")String userName){
         BaseResponse<String> result = new BaseResponse<String>();
@@ -64,7 +64,7 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "用户登录",notes = "填写账号密码")
+    @Operation(tags = "用户登录")
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
     public BaseResponse login(@RequestBody UserLoginDTO userLoginDTO, HttpServletResponse response) {
         BaseResponse result = new BaseResponse();
@@ -88,7 +88,7 @@ public class UserController {
     }
 
     @LoginPassport
-    @ApiOperation(value = "用户退出登录",notes = "用户退出登录")
+    @Operation(tags = "用户退出登录")
     @RequestMapping(value = "/user/loginOut",method = RequestMethod.POST)
     public BaseResponse loginOut(HttpServletRequest request) {
         String token = request.getHeader("authorization");
@@ -97,7 +97,7 @@ public class UserController {
     }
 
     @LoginPassport
-    @ApiOperation(value = "用户信息")
+    @Operation(tags = "用户信息")
     @PostMapping(value = "/user/info")
     public BaseResponse<UserPO> getUserInfo() {
         BaseResponse result = new BaseResponse();
@@ -107,7 +107,7 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "添加管理员",notes = "添加管理员")
+    @Operation(tags = "添加管理员")
     @RequestMapping(value = "/user/created",method = RequestMethod.POST)
     @Transactional
     @LoginPassport
@@ -126,7 +126,7 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "编辑管理员",notes = "编辑管理员")
+    @Operation(tags = "编辑管理员")
     @RequestMapping(value = "/user/modify",method = RequestMethod.POST)
     @LoginPassport
     @Transactional
@@ -142,14 +142,14 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "获取管理员角色",notes = "获取管理员角色")
+    @Operation(tags = "获取管理员角色")
     @GetMapping(value = "/user/getUserRoleByUserId")
     @LoginPassport
     public BaseResponse<List<RolePO>> getUserRoleByUserId(@RequestParam(value = "userId") Long userId)  {
         return BaseResponse.ok(userService.getUserRoleByUserId(userId));
     }
 
-    @ApiOperation(value = "给用户分配角色",notes = "给用户分配角色")
+    @Operation(tags = "给用户分配角色")
     @RequestMapping(value = "/user/grantUserRole",method = RequestMethod.POST)
     @LoginPassport
     public BaseResponse grantUserRole(@RequestBody GrantUserRoleReqVo reqVo){
@@ -162,7 +162,7 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "删除管理员",notes = "删除管理员")
+    @Operation(tags = "删除管理员")
     @RequestMapping(value = "/user/remove",method = RequestMethod.GET)
     @Transactional
     @LoginPassport
@@ -173,7 +173,7 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "修改密码",notes = "修改密码")
+    @Operation(tags = "修改密码")
     @RequestMapping(value = "/user/updatePassword",method = RequestMethod.POST)
     @LoginPassport(validPermission = false)
     @Transactional
@@ -197,7 +197,7 @@ public class UserController {
         }
     }
 
-    @ApiOperation(value = "通过管理员id查询管理员信息",notes = "通过管理员id查询管理员信息")
+    @Operation(tags = "通过管理员id查询管理员信息")
     @RequestMapping(value = "/user/getById",method = RequestMethod.GET)
     @LoginPassport(validPermission = false)
     public BaseResponse<UserPO> getUserById(@RequestParam(value = "id",required = true) Long id){
@@ -207,7 +207,7 @@ public class UserController {
         return result;
     }
 
-    @ApiOperation(value = "查询管理员列表",notes = "查询管理员列表")
+    @Operation(tags = "查询管理员列表")
     @PostMapping(value = "/user/list")
     @LoginPassport(validPermission = false)
     public BaseResponse<List<UserPO>> listUser(@RequestBody UserListReqVo reqVo){

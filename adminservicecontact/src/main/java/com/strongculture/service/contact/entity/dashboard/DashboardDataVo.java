@@ -1,6 +1,5 @@
 package com.strongculture.service.contact.entity.dashboard;
 
-import com.google.common.collect.Lists;
 import lombok.Data;
 
 import java.util.ArrayList;

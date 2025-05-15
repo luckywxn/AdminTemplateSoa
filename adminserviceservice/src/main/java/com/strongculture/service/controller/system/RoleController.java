@@ -9,8 +9,8 @@ import com.strongculture.service.contact.entity.BaseResponse;
 import com.strongculture.service.common.LoginPassport;
 import com.strongculture.service.dao.request.RoleListReqVo;
 import com.strongculture.service.service.system.RoleService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Slf4j
-@Api(tags={"角色服务"})
+@Tag(name="角色服务")
 @RestController
 @RequestMapping("/system")
 public class RoleController {
@@ -28,7 +28,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @ApiOperation(value = "添加角色",notes = "添加角色")
+    @Operation(tags = "添加角色")
     @RequestMapping(value = "/role/created",method = RequestMethod.POST)
     @Transactional
     @LoginPassport
@@ -42,7 +42,7 @@ public class RoleController {
         return result;
     }
 
-    @ApiOperation(value = "修改角色",notes = "修改角色")
+     @Operation(tags = "修改角色")
     @RequestMapping(value = "/role/modify",method = RequestMethod.POST)
     @LoginPassport
     @Transactional
@@ -54,13 +54,13 @@ public class RoleController {
     }
 
     @LoginPassport
-    @ApiOperation(value = "根据角色获权限")
+    @Operation(tags = "根据角色获权限")
     @RequestMapping(value = "/role/getPermissionByRoleId", method = RequestMethod.GET)
     public BaseResponse<List<PermissionPo>> getPermissionByRoleId(@RequestParam(value = "roleId",required = false)Long roleId){
         return BaseResponse.ok(roleService.getPermissionByRoleId(roleId));
     }
 
-    @ApiOperation(value = "给角色分配权限",notes = "给角色分配权限")
+    @Operation(tags = "给角色分配权限")
     @RequestMapping(value = "/role/grantRolePermission",method = RequestMethod.POST)
     @LoginPassport
     public BaseResponse grantRolePermission(@RequestBody GrantPermissionReqVo reqVo){
@@ -73,7 +73,7 @@ public class RoleController {
         }
     }
 
-    @ApiOperation(value = "删除角色",notes = "删除角色")
+    @Operation(tags = "删除角色")
     @RequestMapping(value = "/role/remove",method = RequestMethod.GET)
     @LoginPassport
     @Transactional
@@ -84,7 +84,7 @@ public class RoleController {
         return result;
     }
 
-    @ApiOperation(value = "角色列表",notes = "角色列表")
+    @Operation(tags = "角色列表")
     @PostMapping(value = "/role/list")
     @LoginPassport(validPermission = false)
     public BaseResponse<List<RolePO>> listRole(@RequestBody RoleListReqVo reqVo){

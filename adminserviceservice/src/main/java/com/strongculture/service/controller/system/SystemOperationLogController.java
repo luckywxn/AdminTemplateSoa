@@ -7,8 +7,8 @@ import com.strongculture.service.dao.entity.system.SystemOperationLogPO;
 import com.strongculture.service.common.LoginPassport;
 import com.strongculture.service.service.system.SystemOperationLogService;
 import com.strongculture.service.dao.request.OperationLogListReqVo;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +19,13 @@ import java.util.Calendar;
 import java.util.List;
 
 @RestController
-@Api(tags={"系统操作日志"})
+@Tag(name="系统操作日志")
 public class SystemOperationLogController {
 
     @Autowired
     private SystemOperationLogService systemOperationLogService;
 
-    @ApiOperation(value = "系统操作日志列表",notes = "系统操作日志列表")
+    @Operation(tags = "系统操作日志列表")
     @LoginPassport
     @RequestMapping(value = "/system/operation/log/selectList",method = RequestMethod.POST)
     public BaseResponse<List<SystemOperationLogPO>> selectList(@RequestBody OperationLogListReqVo reqVo){

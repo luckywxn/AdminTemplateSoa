@@ -52,6 +52,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper,RolePO> implements R
             allPermission = allPermission.stream().map(x->{
                 if (permissionIds.contains(x.getId())){
                     x.setHasPermission(true);
+                }else {
+                    x.setHasPermission(false);
                 }
                 return x;
             }).collect(Collectors.toList());

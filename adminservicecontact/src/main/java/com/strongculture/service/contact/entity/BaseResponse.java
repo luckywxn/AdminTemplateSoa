@@ -1,17 +1,17 @@
 package com.strongculture.service.contact.entity;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 public class BaseResponse<T> {
-    @ApiModelProperty(value = "接口状态码")
+    @Schema(name = "接口状态码")
     private Integer code;
-    @ApiModelProperty(value = "提示信息")
+    @Schema(name = "提示信息")
     private String message;
-    @ApiModelProperty(value = "数据")
+    @Schema(name = "数据")
     private T data;
-    @ApiModelProperty(value = "总计")
+    @Schema(name = "总计")
     private Long total;
 
     public BaseResponse SUCCESS(){

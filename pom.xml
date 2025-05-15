@@ -24,11 +24,11 @@
         <java.version>1.8</java.version>
     </properties>
     <dependencies>
-        <!-- 引入knife4j-spring-ui包 /doc.html-->
+        <!-- 引入knife4j-spring-ui包 /doc.html--><!-- 升级为 OpenAPI 3 适配版本 -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>3.0.3</version>
+            <artifactId>knife4j-openapi3-spring-boot-starter</artifactId>
+            <version>4.4.0</version> <!-- 注意版本兼容性 -->
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

@@ -1,14 +1,14 @@
 package com.strongculture.service.contact.entity.system;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
 public class GrantUserRoleReqVo {
-    @ApiModelProperty(value = "用户id")
+    @Schema(name = "用户id")
     private Long userId;
-    @ApiModelProperty(value = "角色id")
+    @Schema(name = "角色id")
     private List<Long> roleIds;
 }
