@@ -19,6 +19,4 @@ public class RolePO extends BasePO {
 
     @TableField(exist = false)
     private Boolean hasRole;
-    @TableField(exist = false)
-    private Integer[] permission;
 }
